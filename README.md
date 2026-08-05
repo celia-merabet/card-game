@@ -3,10 +3,14 @@
 
 Plateforme web de jeu de cartes développée avec Django.
 
-## Lancement
+## Objectif
 
-docker compose up --build
+Créer une plateforme complète permettant aux utilisateurs
+de jouer à un jeu de cartes en ligne.
 
+## Jeu choisi
+
+Bataille.
 
 ## Technologies
 
@@ -14,6 +18,14 @@ docker compose up --build
 - PostgreSQL
 - Redis
 - Docker
+- HTML/CSS
 - GitHub Actions
 
+## Installation
 
+Cloner le projet :
+
+```bash
+git clone repository
+cd card-game
+```
