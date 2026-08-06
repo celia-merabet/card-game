@@ -3,6 +3,11 @@
 
 Plateforme web de jeu de cartes développée avec Django.
 
+# Membres du projet
+
+Mohamed Bouyabri
+Celia Merabet
+
 ## Objectif
 
 Créer une plateforme complète permettant aux utilisateurs
