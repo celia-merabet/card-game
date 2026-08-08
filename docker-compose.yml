@@ -1,106 +1,106 @@
+
 services:
 
-
+  # =========================
+  # DJANGO WEB APPLICATION
+  # =========================
   web:
-
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
 
     container_name: cardgame_web
 
-
-    command:
-
+    command: >
       sh -c "
-
       python manage.py migrate &&
-
       python manage.py collectstatic --noinput &&
-
       gunicorn config.wsgi:application --bind 0.0.0.0:8000
-
       "
 
-
-    ports:
-
-      - "8000:8000"
-
-
     volumes:
-
       - .:/app
 
+    ports:
+      - "8000:8000"
 
     env_file:
-
       - .env
 
-
     depends_on:
-
       db:
-
         condition: service_healthy
-
-
       redis:
-
         condition: service_started
 
+    restart: unless-stopped
 
 
+  # =========================
+  # POSTGRESQL DATABASE
+  # =========================
   db:
-
-
     image: postgres:16
-
 
     container_name: cardgame_postgres
 
+    restart: unless-stopped
 
     environment:
-
-      POSTGRES_DB: cardgame
-
-      POSTGRES_USER: carduser
-
-      POSTGRES_PASSWORD: password
-
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
     volumes:
-
       - postgres_data:/var/lib/postgresql/data
 
-
-
     healthcheck:
-
       test:
         [
-          "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} "
+          "CMD-SHELL",
+          "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"
         ]
-
       interval: 10s
-
       timeout: 5s
-
       retries: 5
-      
       start_period: 10s
 
 
-
+  # =========================
+  # REDIS CACHE / SESSIONS
+  # =========================
   redis:
-
-
     image: redis:7
-
 
     container_name: cardgame_redis
 
+    restart: unless-stopped
+
+    command: redis-server --appendonly yes
+
+    volumes:
+      - redis_data:/data
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "redis-cli",
+          "ping"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
 
+# =========================
+# PERSISTENT VOLUMES
+# =========================
 volumes:
 
-
   postgres_data:
+    name: sanstitre_postgres_data
+
+  redis_data:
+    name: sanstitre_redis_data
