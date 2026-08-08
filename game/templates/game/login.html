@@ -1,85 +1,215 @@
+
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Connexion - Card Game</title>
 
-    <link rel="stylesheet"
-          href="{% static 'css/tokens.css' %}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <link rel="stylesheet"
-          href="{% static 'css/style.css' %}">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, #3b3b3b 0%, #171717 45%, #090909 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
 
+        .container {
+            width: 100%;
+            max-width: 430px;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 40px 35px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #bbbbbb;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #eeeeee;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            border-radius: 10px;
+            border: 1px solid #555;
+            background: rgba(0, 0, 0, 0.35);
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
+        }
+
+        input::placeholder {
+            color: #888;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: white;
+            color: #111;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 5px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            background: #eeeeee;
+        }
+
+        .error {
+            background: rgba(220, 38, 38, 0.2);
+            border: 1px solid rgba(220, 38, 38, 0.5);
+            color: #ffb4b4;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .auth-footer p {
+            margin-bottom: 8px;
+        }
+
+        .auth-footer a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            color: white;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            color: #aaa;
+            font-size: 13px;
+        }
+
+        .remember input {
+            width: auto;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
 </head>
 
+<body>
 
-<body class="auth-page">
+<div class="container">
 
+    <div class="card">
 
-<div class="auth-container">
+        <div class="logo">🃏</div>
 
+        <h1>Connexion</h1>
 
-    <div class="auth-logo">
-
-        🃏
-
-        <h1>
-            Card Game
-        </h1>
-
-        <p>
-            Connectez-vous pour jouer
+        <p class="subtitle">
+            Connectez-vous à votre compte
         </p>
-
-    </div>
-
-
-    <div class="auth-card">
-
-
-        <h2>
-            Connexion
-        </h2>
-
-
-        <p class="auth-subtitle">
-
-            Entrez vos identifiants pour accéder
-            à votre compte.
-
-        </p>
-
 
         {% if form.errors %}
-
-            <div class="alert alert-error">
-
+            <div class="error">
                 Nom d'utilisateur ou mot de passe incorrect.
-
+                Vérifiez vos informations puis réessayez.
             </div>
-
         {% endif %}
-
 
         <form method="post">
 
             {% csrf_token %}
 
-
             <div class="form-group">
-
                 <label for="id_username">
-
                     Nom d'utilisateur
-
                 </label>
 
                 <input
@@ -90,16 +220,11 @@
                     autocomplete="username"
                     required
                 >
-
             </div>
 
-
             <div class="form-group">
-
                 <label for="id_password">
-
                     Mot de passe
-
                 </label>
 
                 <input
@@ -110,21 +235,34 @@
                     autocomplete="current-password"
                     required
                 >
-
             </div>
 
+            <div class="remember">
+                <input
+                    type="checkbox"
+                    id="remember"
+                    name="remember"
+                >
+
+                <label for="remember">
+                    Se souvenir de moi
+                </label>
+            </div>
+
+            <input
+                type="hidden"
+                name="next"
+                value="{{ next }}"
+            >
 
             <button
                 type="submit"
-                class="button button-primary button-full">
-
-                🔐 Se connecter
-
+                class="btn-login"
+            >
+                Se connecter
             </button>
 
-
         </form>
-
 
         <div class="auth-footer">
 
@@ -133,28 +271,21 @@
             </p>
 
             <a href="{% url 'register' %}">
-
                 Créer un compte
-
             </a>
 
         </div>
 
-
-        <a href="{% url 'home' %}"
-           class="back-link">
-
+        <a
+            href="{% url 'home' %}"
+            class="back-link"
+        >
             ← Retour à l'accueil
-
         </a>
-
 
     </div>
 
-
 </div>
 
-
 </body>
-
 </html>
