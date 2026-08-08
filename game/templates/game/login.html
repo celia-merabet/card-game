@@ -1,0 +1,160 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Connexion - Card Game</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/tokens.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+</head>
+
+
+<body class="auth-page">
+
+
+<div class="auth-container">
+
+
+    <div class="auth-logo">
+
+        🃏
+
+        <h1>
+            Card Game
+        </h1>
+
+        <p>
+            Connectez-vous pour jouer
+        </p>
+
+    </div>
+
+
+    <div class="auth-card">
+
+
+        <h2>
+            Connexion
+        </h2>
+
+
+        <p class="auth-subtitle">
+
+            Entrez vos identifiants pour accéder
+            à votre compte.
+
+        </p>
+
+
+        {% if form.errors %}
+
+            <div class="alert alert-error">
+
+                Nom d'utilisateur ou mot de passe incorrect.
+
+            </div>
+
+        {% endif %}
+
+
+        <form method="post">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label for="id_username">
+
+                    Nom d'utilisateur
+
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    id="id_username"
+                    placeholder="Votre nom d'utilisateur"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="id_password">
+
+                    Mot de passe
+
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    id="id_password"
+                    placeholder="Votre mot de passe"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="button button-primary button-full">
+
+                🔐 Se connecter
+
+            </button>
+
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            <p>
+                Vous n'avez pas encore de compte ?
+            </p>
+
+            <a href="{% url 'register' %}">
+
+                Créer un compte
+
+            </a>
+
+        </div>
+
+
+        <a href="{% url 'home' %}"
+           class="back-link">
+
+            ← Retour à l'accueil
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,340 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Partie - Card Game</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/tokens.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+</head>
+
+
+<body class="game-page">
+
+
+<header class="navbar game-navbar">
+
+    <div class="logo">
+
+        🃏 Card Game
+
+    </div>
+
+
+    <div class="game-status">
+
+        <span class="status-dot"></span>
+
+        Partie en cours
+
+    </div>
+
+
+    <nav>
+
+        <a href="{% url 'profile' %}">
+            Profil
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="game-container">
+
+
+    <section class="game-header">
+
+        <div>
+
+            <span class="eyebrow">
+                BATAILLE
+            </span>
+
+            <h1>
+                Table de jeu
+            </h1>
+
+        </div>
+
+
+        <div class="score-display">
+
+            <span>
+                Score
+            </span>
+
+            <strong>
+                0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <section class="game-table">
+
+
+        <div class="player-area">
+
+
+            <div class="player-info">
+
+                <div class="player-avatar">
+                    🤖
+                </div>
+
+                <div>
+
+                    <h2>
+                        Adversaire
+                    </h2>
+
+                    <span>
+                        26 cartes
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="opponent-cards">
+
+
+                <div class="card-back">
+                    🂠
+                </div>
+
+
+                <div class="card-back">
+                    🂠
+                </div>
+
+
+                <div class="card-back">
+                    🂠
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="battle-zone">
+
+
+            <div class="deck-stack">
+
+                <div class="card-back large-card">
+                    🂠
+                </div>
+
+                <span>
+                    PIoche
+                </span>
+
+            </div>
+
+
+            <div class="played-card">
+
+
+                {% if cards %}
+
+                    {% with card=cards.0 %}
+
+                        <div class="playing-card
+                            {% if card.suit == 'HEART' or card.suit == 'DIAMOND' %}
+                                red-card
+                            {% else %}
+                                black-card
+                            {% endif %}">
+
+                            <span>
+
+                                {% if card.suit == "HEART" %}
+                                    ♥
+                                {% elif card.suit == "DIAMOND" %}
+                                    ♦
+                                {% elif card.suit == "CLUB" %}
+                                    ♣
+                                {% else %}
+                                    ♠
+                                {% endif %}
+
+                            </span>
+
+
+                            <strong>
+                                {{ card.value }}
+                            </strong>
+
+
+                            <span>
+
+                                {% if card.suit == "HEART" %}
+                                    ♥
+                                {% elif card.suit == "DIAMOND" %}
+                                    ♦
+                                {% elif card.suit == "CLUB" %}
+                                    ♣
+                                {% else %}
+                                    ♠
+                                {% endif %}
+
+                            </span>
+
+                        </div>
+
+                    {% endwith %}
+
+                {% else %}
+
+                    <div class="empty-card">
+
+                        ?
+
+                    </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="player-area active-player">
+
+
+            <div class="player-info">
+
+                <div class="player-avatar">
+                    👤
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        {{ user.username }}
+                    </h2>
+
+                    <span>
+                        Votre main
+                    </span>
+
+                </div>
+
+
+                <span class="turn-badge">
+                    Votre tour
+                </span>
+
+            </div>
+
+
+            <div class="player-hand">
+
+
+                {% for card in cards %}
+
+
+                    <button class="card-unit">
+
+                        <span class="card-suit">
+
+                            {% if card.suit == "HEART" %}
+                                ♥
+                            {% elif card.suit == "DIAMOND" %}
+                                ♦
+                            {% elif card.suit == "CLUB" %}
+                                ♣
+                            {% else %}
+                                ♠
+                            {% endif %}
+
+                        </span>
+
+
+                        <strong>
+                            {{ card.value }}
+                        </strong>
+
+
+                    </button>
+
+
+                {% empty %}
+
+                    <p>
+                        Aucune carte.
+                    </p>
+
+                {% endfor %}
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <section class="game-actions">
+
+
+        <button
+            class="button button-primary button-large">
+
+            🎴 Jouer une carte
+
+        </button>
+
+
+        <a href="{% url 'profile' %}"
+           class="button button-secondary">
+
+            Quitter la partie
+
+        </a>
+
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        🃏 Card Game — Bonne chance !
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

@@ -1,18 +1,149 @@
+:root {
 
-:root{
+    /* ================================
+       COULEURS PRINCIPALES
+       ================================ */
 
---heart:#d32f2f;
---diamond:#e53935;
---club:#1b5e20;
---spade:#000;
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-light: #dbeafe;
 
---primary:#1565c0;
+    --color-secondary: #7c3aed;
+    --color-secondary-dark: #6d28d9;
 
---radius:12px;
+    --color-background: #f8fafc;
+    --color-surface: #ffffff;
+    --color-surface-dark: #0f172a;
 
---spacing:16px;
+    --color-text: #0f172a;
+    --color-text-secondary: #64748b;
+    --color-text-light: #94a3b8;
 
---font-family:Arial;
+    --color-border: #e2e8f0;
+
+    --color-success: #16a34a;
+    --color-success-light: #dcfce7;
+
+    --color-danger: #dc2626;
+    --color-danger-light: #fee2e2;
+
+    --color-warning: #f59e0b;
+    --color-warning-light: #fef3c7;
+
+
+    /* ================================
+       COULEURS DES ENSEIGNES
+       ================================ */
+
+    --color-heart: #dc2626;
+    --color-diamond: #dc2626;
+
+    --color-club: #111827;
+    --color-spade: #111827;
+
+
+    /* ================================
+       TABLE DE JEU
+       ================================ */
+
+    --table-green: #14532d;
+    --table-green-light: #166534;
+    --table-border: #22c55e;
+
+
+    /* ================================
+       TYPOGRAPHIE
+       ================================ */
+
+    --font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 3rem;
+
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-black: 800;
+
+
+    /* ================================
+       ESPACEMENTS
+       ================================ */
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+
+    /* ================================
+       BORDURES
+       ================================ */
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+
+    /* ================================
+       OMBRES
+       ================================ */
+
+    --shadow-sm:
+        0 1px 3px rgba(15, 23, 42, 0.08);
+
+    --shadow-md:
+        0 4px 12px rgba(15, 23, 42, 0.10);
+
+    --shadow-lg:
+        0 10px 30px rgba(15, 23, 42, 0.15);
+
+    --shadow-card:
+        0 8px 20px rgba(15, 23, 42, 0.18);
+
+
+    /* ================================
+       TRANSITIONS
+       ================================ */
+
+    --transition-fast:
+        150ms ease;
+
+    --transition-normal:
+        250ms ease;
+
+    --transition-slow:
+        400ms ease;
+
+
+    /* ================================
+       LAYOUT
+       ================================ */
+
+    --container-width: 1200px;
+
+    --navbar-height: 72px;
 
 }
-
